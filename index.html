@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Straight Up Honey</title>
+    <!-- External CSS (optional) -->
+    <link rel="stylesheet" href="styles.css">
+    <!-- Internal CSS (optional) -->
+    <style>
+        /* Banner Style */
+        .banner {
+            background-color: #000; /* Dark background for the banner */
+            color: yellow;  /* Yellow text */
+            text-align: center; /* Center the text */
+            padding: 20px 0; /* Padding around the text */
+        }
+
+        /* Styling for the image space in the banner */
+        .banner img {
+            max-width: 100%; /* Ensures the image fits within the banner */
+            height: auto; /* Maintains the image's aspect ratio */
+            display: block;
+            margin: 0 auto; /* Centers the image horizontally */
+        }
+
+        /* Navigation Bar Styling */
+        header {
+            font-family: Arial, sans-serif;
+        }
+
+        /* Navigation link styling */
+        nav ul {
+            list-style-type: none;
+            padding: 0;
+            margin: 0;
+            background-color: #000;
+            display: flex;
+            justify-content: center;
+        }
+
+        nav ul li {
+            margin: 10px;
+        }
+
+        nav ul li a {
+            color: white;
+            text-decoration: none;
+            padding: 10px 20px;
+            display: block;
+        }
+
+        nav ul li a:hover {
+            background-color: #555;
+        }
+
+        /* Page Body Styling */
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #000000;
+        }
+
+        /* Additional Content Styling */
+        main {
+            padding: 20px;
+        }
+
+        footer {
+            text-align: center;
+            padding: 10px;
+            background-color: #333;
+            color: white;
+        }
+/* Carousel container */
+        .carousel-container {
+            position: relative;
+            max-width: 728px;
+            margin: auto;
+            overflow: hidden; /* Hide images that are off-screen */
+        }
+
+        /* Carousel items (each item is a container for an image) */
+        .carousel-images {
+            display: flex;
+            transition: transform 0.5s ease-in-out; /* Smooth sliding transition */
+        }
+
+        .carousel-images .carousel-item {
+            flex: 0 0 100%; /* Each item takes 100% of the container width */
+            height: auto;
+        }
+
+        .carousel-images img {
+            width: 728px; /* Ensure the image fills its container */
+            height: auto; /* Maintain the aspect ratio */
+            display: block; /* Remove any space below the image */
+        }
+
+        /* Navigation buttons */
+        .prev, .next {
+            position: absolute;
+            top: 50%;
+            padding: 16px;
+            background-color: #000000;
+            color: #555555;
+            border: none;
+            cursor: pointer;
+            font-size: 18px;
+            transform: translateY(-50%);
+            z-index: 10;
+        }
+
+        .prev {
+            left: 10px;
+        }
+
+        .next {
+            right: 10px;
+        }
+
+        /* Hover effect on the navigation buttons */
+        .prev:hover, .next:hover {
+            background-color: rgba(0, 0, 0, 0.8);
+        }
+
+        /* Main content styling */
+        main {
+            padding: 20px;
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+    <!-- Banner Section -->
+    <div class="banner">
+        <h1>Welcome</h1>
+        <!-- Space for Image (replace the src with your image file path) -->
+        <img src="your-image.jpg">
+    </div>
+
+    <!-- Header Section (Navigation Bar) -->
+    <header>
+        <nav>
+            <ul>
+                <li><a href="#home">Home</a></li>
+                <li><a href="#Honey">Honey</a></li>
+                <li><a href="#Soap">Soap</a></li>
+                <li><a href="#Candles">Candles</a></li>
+                <li><a href="checkout_page.html">My Cart</a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>    
+        <!-- Carousel Section -->
+       <div class="carousel-container">
+            <div class="carousel-images">
+                <!-- Container for Image 1 -->
+                <div class="carousel-item">
+                    <a href="product_page_honey.html"><img src="honey_carousel.png" alt="Image 1"></a>
+                </div>
+                <!-- Container for Image 2 -->
+                <div class="carousel-item">
+                    <a href="product_page_candles.html"><img src="candles_carousel.png" alt="Image 2"></a>
+                </div>
+                <!-- Container for Image 3 -->
+                <div class="carousel-item">
+                    <a href="product_page_soap.html"><img src="soap_carousel.png" alt="Image 3"></a>
+                </div>
+            </div>
+
+            <!-- Previous and Next buttons -->
+            <button class="prev" onclick="moveSlide(-1)">&#10094;</button>
+            <button class="next" onclick="moveSlide(1)">&#10095;</button>
+        </div>
+    </main>
+
+    <script>
+        let currentIndex = 0;
+
+        function moveSlide(direction) {
+            const slides = document.querySelectorAll('.carousel-item');
+            const totalSlides = slides.length;
+
+            // Update the currentIndex based on the direction
+            currentIndex += direction;
+
+            // Loop around if at the start or end
+            if (currentIndex < 0) {
+                currentIndex = totalSlides - 1;
+            } else if (currentIndex >= totalSlides) {
+                currentIndex = 0;
+            }
+
+            // Move the carousel to the new slide
+            const newTransformValue = -currentIndex * 100; // Move by 100% of the width for each slide
+            document.querySelector('.carousel-images').style.transform = `translateX(${newTransformValue}%)`;
+        }
+
+        // Auto-cycle the carousel every 3 seconds
+        setInterval(() => {
+            moveSlide(1);
+        }, 3000);
+    </script>
+
+
+    <!-- Footer Section -->
+    <footer>
+        <p>&copy; 2024 Straight up Honey All rights reserved.</p>
+    </footer>
+
+    <!-- External JS (optional) -->
+    <script src="script.js"></script>
+</body>
+</html>
